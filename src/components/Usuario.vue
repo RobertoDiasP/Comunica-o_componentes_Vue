@@ -3,6 +3,7 @@
     <h1>Componente Usuário</h1>
     <p>Esse é um componente muito legal!</p>
     <p>nome é pedro : {{ nome }}</p>
+    <p>Idade é: {{ idade }}</p>
     <button @click="AlterarNome">Alterar Nome</button>
     <hr />
 
@@ -11,8 +12,14 @@
         :nome="nome"
         @mudounome="nome = $event"
         :reiniciarfn="reiniciarnome"
+        :idade="idade"
       />
-      <app-usuario-editar :nome="nome" />
+      <app-usuario-editar
+        :nome="nome"
+        :idade="idade"
+        @IdadeMudou="idade = $event + 2"
+        :AlterarIdadeB="AlterarIdade"
+      />
     </div>
   </div>
 </template>
@@ -26,6 +33,7 @@ export default {
   data() {
     return {
       nome: "pedro silva",
+      idade: "21",
     };
   },
   methods: {
@@ -34,6 +42,9 @@ export default {
     },
     reiniciarnome() {
       this.nome = "Pedro";
+    },
+    AlterarIdade() {
+      this.idade = 39;
     },
   },
 };
